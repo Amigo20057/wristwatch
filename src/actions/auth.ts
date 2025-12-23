@@ -50,8 +50,6 @@ export async function signInWithCredentials(email: string, password: string) {
 export async function signOutFunc() {
   try {
     const result = await signOut({ redirect: false });
-    console.log(result, "result");
-
     return result;
   } catch (error) {
     console.error("Error authorization: ", error);

@@ -30,7 +30,6 @@ export default function Form({ type }: IProps) {
       }
 
       const result = await signInWithCredentials(data.email, data.password);
-      console.log("SIGN IN RESULT:", result);
 
       if (result?.error) {
         console.error("Sign in error:", result.error);

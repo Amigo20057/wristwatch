@@ -12,8 +12,6 @@ export const AppLoader = ({
   const { data: session, status } = useSession();
   const { setAuthState } = useAuthStore();
 
-  console.log("DURA", status);
-
   useEffect(() => {
     setAuthState(status, session);
   }, [session, status, setAuthState]);

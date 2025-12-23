@@ -17,8 +17,6 @@ export default function Header() {
     { path: "/contact", name: "Contact" },
   ];
 
-  console.log(status);
-
   return (
     <header className="w-full h-[90px] bg-[#2b323f] text-white flex items-center justify-center">
       <div className="w-full max-w-[1200px] m-auto p-[0_50px] flex items-center justify-between px-8">
