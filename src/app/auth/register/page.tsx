@@ -1,9 +1,14 @@
+"use client";
+
 import Form from "@/components/form";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+  const router = useRouter();
+
   return (
     <div className="bg-white shadow-md rounded-xl w-full max-w-[420px] p-10">
-      <div className="text-center mb-8">
+      <div className="text-center mb-8" onClick={() => router.push("/")}>
         <h1 className="text-[34px] tracking-[8px]">L O R O</h1>
         <p className="text-xs tracking-[4px] opacity-60">PEVERIENTE</p>
       </div>

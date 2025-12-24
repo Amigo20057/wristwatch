@@ -18,10 +18,13 @@ export default function Header() {
   ];
 
   return (
-    <header className="w-full h-[90px] bg-[#2b323f] text-white flex items-center justify-center">
+    <header className="w-full h-[90px] bg-[#2b323f] text-white flex items-center justify-center sticky top-0 z-50">
       <div className="w-full max-w-[1200px] m-auto p-[0_50px] flex items-center justify-between px-8">
         <div className="flex items-center tracking-[0.2em] font-light">
-          <div className="flex flex-col text-center !mr-[50px] cursor-pointer">
+          <div
+            className="flex flex-col text-center !mr-[50px] cursor-pointer"
+            onClick={() => router.push("/")}
+          >
             <span>L O R O</span>
             <span className="text-[10px] opacity-60">P E V E R I A N T E</span>
           </div>
@@ -34,7 +37,7 @@ export default function Header() {
                     className={`text-[14px] tracking-wide ${
                       pathname === el.path
                         ? "underline underline-offset-[6px]"
-                        : "opacity-80 hover:opacity-100 "
+                        : "opacity-80 hover:opacity-100"
                     }`}
                   >
                     {el.name}
@@ -58,13 +61,7 @@ export default function Header() {
             className="cursor-pointer opacity-80 hover:opacity-100"
           />
           <User
-            onClick={() => {
-              if (isAuth) {
-                router.push("/profile");
-              } else {
-                router.push("/auth/login");
-              }
-            }}
+            onClick={() => router.push("/profile")}
             size={20}
             className="cursor-pointer opacity-80 hover:opacity-100"
           />
