@@ -1,4 +1,4 @@
-import fetchWatch from "@/actions/watch";
+import { fetchWatch } from "@/actions/watch";
 import { WatchStatus } from "@/store/watch.store";
 import { IWatch } from "@/types/watch.interface";
 import { useEffect, useState } from "react";

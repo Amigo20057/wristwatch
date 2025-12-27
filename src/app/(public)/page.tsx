@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Watches from "../../components/watches";
+import Watches from "@/components/watches";
 import ButtonCommonLink from "@/components/button-common-link";
 
 export default function Home() {
@@ -68,7 +68,11 @@ export default function Home() {
         </div>
       </section>
       <Watches titleText="Modern Elegance" type="Best Seller" limit={2} />
-      <ButtonCommonLink text="View all" href="/watches" customStyles="m-auto" />
+      <ButtonCommonLink
+        text="View all"
+        href="/watches"
+        customStyles="m-auto mb-5"
+      />
       <Watches titleText="Classic " type="Best Seller" limit={2} />
       <ButtonCommonLink text="View all" href="/watches" customStyles="m-auto" />
       <section className="w-[1200px] m-auto min-h-[400px] flex items-center relative pt-0 pl-[30px] pr-[30px] mb-5 mt-20">
@@ -101,6 +105,65 @@ export default function Home() {
             prototype. They select premium materials—perhaps a stainless steel
             case paired with a sapphire crystal face—to bring the design to
             life.
+          </p>
+        </div>
+      </section>
+      <Watches titleText="Elegance " type="Best Seller" limit={4} />
+      <section className="w-[1200px] m-auto min-h-[400px] flex items-center relative pt-0 pl-[30px] pr-[30px] mb-5 mt-20">
+        <Image
+          src="/prototyping.png"
+          alt="design"
+          width={546}
+          height={351}
+          className="shrink-0 border "
+        />
+        <div className="w-[600px] bg-[#2b323f] p-[60px] absolute right-9">
+          <h1
+            className="text-[25px] text-white mb-5"
+            style={{
+              fontFamily: "serif",
+              fontWeight: "100",
+              letterSpacing: "3px",
+            }}
+          >
+            Assembly and Quality Assurance
+          </h1>
+          <p
+            className="text-[14px] text-[#c3c5c9] leading-[200%]"
+            style={{
+              letterSpacing: "2px",
+              fontFamily: "serif",
+            }}
+          >
+            Once the prototype meets exacting standards, the watch enters
+            production.Master watchmakers assemble each timepiece by hand,
+            integrating the intricate movement with the crafted case and
+            meticulously attaching the dial and hands.
+          </p>
+        </div>
+      </section>
+      <section className="bg-[#2b323f]">
+        <div></div>
+        <div className="text-center">
+          <h1
+            className="text-[18px] text-white mb-5"
+            style={{
+              fontFamily: "serif",
+              fontWeight: "100",
+              letterSpacing: "3px",
+            }}
+          >
+            Loro Peveriente Emails
+          </h1>
+          <p
+            className="text-[14px] text-[#c3c5c9] leading-[200%]"
+            style={{
+              letterSpacing: "2px",
+              fontFamily: "serif",
+            }}
+          >
+            Get access to exclusive offers, and a few secrets every now and
+            then.
           </p>
         </div>
       </section>

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useWatchStore } from "@/store/watch.store";
 import { IWatch } from "@/types/watch.interface";
-import Card from "@/components/card";
+import Watches from "@/components/watches";
 
 export default function WatchesClient({
   initialWatches,
@@ -22,10 +22,11 @@ export default function WatchesClient({
   if (status === "error") return <section>Error</section>;
 
   return (
-    <section>
-      {data.map((w) => (
-        <Card key={w.id} watch={w} />
-      ))}
+    <section className="pt-10 flex flex-col gap-10">
+      <Watches titleText="Modern Elegance" type="Best Seller" limit={3} />
+      <Watches titleText="Skeleton Automatic " type="Best Seller" limit={4} />
+      <Watches titleText="Classic " type="Best Seller" limit={4} />
+      <Watches titleText="Elegance " type="Best Seller" limit={4} />
     </section>
   );
 }

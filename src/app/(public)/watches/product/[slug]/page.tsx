@@ -1,3 +1,16 @@
-export default function Product() {
-  return <div>page</div>;
+import { fetchWatchById } from "@/actions/watch";
+import ProductClient from "./product-client";
+
+export default async function Product({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const watch = await fetchWatchById(+slug);
+
+  if (!watch) return <div>Not found</div>;
+
+  return <ProductClient watch={watch} />;
 }

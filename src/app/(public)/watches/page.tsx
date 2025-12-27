@@ -1,4 +1,4 @@
-import fetchWatch from "@/actions/watch";
+import { fetchWatch } from "@/actions/watch";
 import WatchesClient from "./watches-client";
 
 export default async function Watches() {

@@ -22,6 +22,7 @@ model User {
 
   accounts      Account[]
   sessions      Session[]
+  order         Order[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -82,5 +83,55 @@ model Watch {
   tag String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+  orderWatch OrderWatches[]
   @@map("watches")
+}
+
+model Order {
+  id     BigInt @id @default(autoincrement())
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  items  OrderWatches[]
+
+  firstName String @map("first_name")
+  lastName String @map("last_name")
+  address String
+  city String
+  state String
+  zipCode String @map("zip_code")
+  phone String
+  
+  cardNumber String @map("card_number")
+  expirationDate String @map("expiration_date")
+  securityCode String @map("security_code")
+  nameOnCard String @map("name_on_card")
+
+  status OrderStatus @default(PENDING)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@map("orders")
+}
+
+model OrderWatches {
+  id BigInt @id @default(autoincrement())
+  orderId BigInt @map("order_id")
+  watchId BigInt @map("watch_id")
+  quantity Int @default(1)
+
+  order Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  watch Watch @relation(fields: [watchId], references: [id], onDelete: Cascade)
+
+  @@unique([orderId, watchId]) 
+  @@map("order_watches")
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  CANCELLED
 }

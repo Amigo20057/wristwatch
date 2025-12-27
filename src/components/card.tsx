@@ -6,7 +6,6 @@ interface IProps {
 }
 
 export default function Card({ watch }: IProps) {
-  console.log(watch.images[0]);
   return (
     <div className="w-[279px] h-[500px] ">
       <div className="bg-[#f0f0f0] h-[400px] relative overflow-hidden cursor-pointer">
