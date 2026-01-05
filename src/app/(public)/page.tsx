@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Watches from "@/components/watches";
 import ButtonCommonLink from "@/components/button-common-link";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -142,14 +143,41 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section className="bg-[#2b323f]">
-        <div></div>
+      <section className="w-full bg-[#2b323f]">
+        <div className="w-[1200px] m-auto min-h-[400px] flex items-center relative pt-0 pl-[30px] pr-[30px] mb-5 mt-20">
+          <Image
+            src="/story.png"
+            alt="story"
+            width={546}
+            height={330}
+            className="shrink-0 border h-[330px] w-[546px] object-cover"
+          />
+          <div className="w-[600px] bg-[#2b323f] p-[60px] absolute right-0">
+            <h1
+              className="text-[42px] text-white mb-5"
+              style={{
+                fontFamily: "serif",
+                fontWeight: "100",
+                letterSpacing: "2px",
+              }}
+            >
+              Read Our Story
+            </h1>
+            <ButtonCommonLink
+              text="Read now"
+              href="/out-story"
+              customStyles="m-auto mb-5"
+            />
+          </div>
+        </div>
+      </section>
+      <section className="bg-[#2b323f] flex flex-col items-center">
         <div className="text-center">
           <h1
             className="text-[18px] text-white mb-5"
             style={{
               fontFamily: "serif",
-              fontWeight: "100",
+              fontWeight: "400",
               letterSpacing: "3px",
             }}
           >
@@ -165,6 +193,28 @@ export default function Home() {
             Get access to exclusive offers, and a few secrets every now and
             then.
           </p>
+        </div>
+        <div className="relative mt-5">
+          <input
+            type="email"
+            placeholder="Email"
+            className="
+            w-[360px] h-[45px]
+            text-white placeholder-[#9fa3a8]
+            border border-[#9fa3a8]
+            px-6 pr-12
+            outline-none focus:ring-0 focus:border-white
+            bg-transparent"
+          />
+          <ArrowRight
+            size={18}
+            className="
+            absolute right-4 top-1/2 -translate-y-1/2
+            text-[#9fa3a8]
+            cursor-pointer
+            transition-colors
+            hover:text-white"
+          />
         </div>
       </section>
     </div>

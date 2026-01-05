@@ -1,6 +1,14 @@
 import { IWatch } from "./watch.interface";
 
+export interface ICartItem {
+  id: number;
+  watch: IWatch;
+  quantity: number;
+  totalPrice: number;
+}
+
 export interface ICart {
-  id?: number;
-  watches: (IWatch[] & { quantity: number }) | null;
+  items: ICartItem[];
+  totalCount: number;
+  totalPrice: number;
 }

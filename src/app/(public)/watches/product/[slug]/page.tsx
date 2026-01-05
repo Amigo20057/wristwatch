@@ -7,10 +7,7 @@ export default async function Product({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-
   const watch = await fetchWatchById(+slug);
-
   if (!watch) return <div>Not found</div>;
-
   return <ProductClient watch={watch} />;
 }

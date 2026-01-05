@@ -94,6 +94,8 @@ model Order {
 
   items  OrderWatches[]
 
+  orderNumber String @unique @map("order_number")
+
   firstName String @map("first_name")
   lastName String @map("last_name")
   address String
@@ -102,10 +104,10 @@ model Order {
   zipCode String @map("zip_code")
   phone String
   
-  cardNumber String @map("card_number")
-  expirationDate String @map("expiration_date")
-  securityCode String @map("security_code")
-  nameOnCard String @map("name_on_card")
+  cardNumber String? @map("card_number")
+  expirationDate String? @map("expiration_date")
+  securityCode String? @map("security_code")
+  nameOnCard String? @map("name_on_card")
 
   status OrderStatus @default(PENDING)
 
