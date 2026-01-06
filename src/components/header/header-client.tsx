@@ -3,12 +3,16 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Search, User, ShoppingBag } from "lucide-react";
-import { useAuthStore } from "@/store/auth.store";
+import type { Currency } from "@/types/currency.interface";
+import CurrencySelector from "./currency-selector";
 
-export default function Header() {
+export default function HeaderClient({
+  initialCurrency,
+}: {
+  initialCurrency: Currency;
+}) {
   const pathname = usePathname();
   const router = useRouter();
-  const { isAuth, session, status, setAuthState } = useAuthStore();
 
   const navItems = [
     { path: "/", name: "Home" },
@@ -28,6 +32,7 @@ export default function Header() {
             <span>L O R O</span>
             <span className="text-[10px] opacity-60">P E V E R I A N T E</span>
           </div>
+
           <nav>
             <ul className="flex items-center gap-8">
               {navItems.map((el) => (
@@ -49,12 +54,7 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-6 text-sm">
-          <div className="flex items-center gap-1 opacity-80 hover:opacity-100 cursor-pointer">
-            <span>United States</span>
-            <span className="mx-1">|</span>
-            <span>USD $</span>
-            <span className="text-xs">⌄</span>
-          </div>
+          <CurrencySelector initialCurrency={initialCurrency} />
 
           <Search
             size={20}

@@ -1,11 +1,31 @@
+import { useCurrencyContext } from "@/hoc/currency";
+import useRates from "@/hooks/useRates";
+import { Currency } from "@/types/currency.interface";
 import { IWatch } from "@/types/watch.interface";
+import { convertFromUsd, formatMoney } from "@/utils/price";
 import Image from "next/image";
 
 interface IProps {
   watch: IWatch;
 }
 
+type Symbols = "$" | "€" | "₴";
+
+const symbolCurrencies: Record<Currency, Symbols> = {
+  EUR: "€",
+  USD: "$",
+  UAH: "₴",
+};
+
 export default function Card({ watch }: IProps) {
+  const currency = useCurrencyContext();
+  const rates = useRates();
+
+  const value = rates
+    ? convertFromUsd(watch.price, currency, rates)
+    : watch.price;
+  const priceText = rates ? formatMoney(value, currency) : "0,000";
+
   return (
     <div className="w-[279px] h-[500px] ">
       <div className="bg-[#f0f0f0] h-[400px] relative overflow-hidden cursor-pointer">
@@ -41,7 +61,7 @@ export default function Card({ watch }: IProps) {
           letterSpacing: "2px",
         }}
       >
-        $ {new Intl.NumberFormat("de-DE").format(watch.price)} USD
+        {symbolCurrencies[currency]} {priceText} {currency}{" "}
       </p>
     </div>
   );

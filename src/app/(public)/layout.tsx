@@ -1,6 +1,7 @@
-import Header from "@/components/header";
+import Header from "@/components/header/header";
 import "../globals.css";
 import Footer from "@/components/footer";
+import CurrencyProviderServer from "@/hoc/currency-server";
 
 export default function PublicLayout({
   children,
@@ -9,9 +10,11 @@ export default function PublicLayout({
 }>) {
   return (
     <div>
-      <Header />
-      {children}
-      <Footer />
+      <CurrencyProviderServer>
+        <Header />
+        {children}
+        <Footer />
+      </CurrencyProviderServer>
     </div>
   );
 }
