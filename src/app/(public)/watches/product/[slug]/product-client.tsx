@@ -6,6 +6,7 @@ import { useCartStore } from "@/store/cart.store";
 import { ICart } from "@/types/cart.interface";
 import { symbolCurrencies } from "@/types/currency.interface";
 import { IWatch } from "@/types/watch.interface";
+import { api } from "@/utils/api";
 import { convertFromUsd, formatMoney } from "@/utils/price";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
@@ -69,11 +70,7 @@ export default function ProductClient({ watch }: { watch: IWatch }) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    await fetch("/api/cart", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(cart),
-    });
+    await api<void>("cart", "POST", cart);
 
     setCart(cart);
     setProductCount(1);

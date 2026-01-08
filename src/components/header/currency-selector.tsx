@@ -5,6 +5,7 @@ import {
   CountryOption,
   Currency,
 } from "@/types/currency.interface";
+import { api } from "@/utils/api";
 import { Check, ChevronDown, Globe, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -38,8 +39,10 @@ const COUNTRIES: CountryOption[] = [
 
 export default function CurrencySelector({
   initialCurrency,
+  initialCountry,
 }: {
   initialCurrency: Currency;
+  initialCountry: CountryCode;
 }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -48,7 +51,7 @@ export default function CurrencySelector({
 
   const [currency, setCurrency] = useState<Currency>(initialCurrency);
 
-  const [countryCode, setCountryCode] = useState<CountryCode>("US");
+  const [countryCode, setCountryCode] = useState<CountryCode>(initialCountry);
 
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -94,16 +97,19 @@ export default function CurrencySelector({
 
   const currencySymbol = selectedCountry.currencySymbol[currency] ?? "";
 
-  const persistCurrency = async (cur: Currency) => {
+  const persistCurrency = async (
+    cur: Currency,
+    cou: CountryCode = countryCode
+  ) => {
+    const prev = currency;
     setCurrency(cur);
 
-    await fetch("/api/currency", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ currency: cur }),
-    });
-
-    router.refresh();
+    try {
+      await api<void>("currency", "POST", { currency: cur, country: cou });
+      router.refresh();
+    } catch {
+      setCurrency(prev);
+    }
   };
 
   const onSelectCountry = async (code: CountryCode) => {
@@ -112,7 +118,7 @@ export default function CurrencySelector({
     const country = COUNTRIES.find((c) => c.code === code)!;
 
     if (!country.currencies.includes(currency)) {
-      await persistCurrency(country.defaultCurrency);
+      await persistCurrency(country.defaultCurrency, code);
     }
 
     setTab("currency");

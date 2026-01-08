@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Rates } from "@/utils/price";
+import { api } from "@/utils/api";
 
 export default function useRates() {
   const [rates, setRates] = useState<Rates | null>(null);
@@ -10,11 +11,13 @@ export default function useRates() {
     let alive = true;
 
     (async () => {
-      const res = await fetch("/api/rates");
-      const json = await res.json();
-
-      if (!alive) return;
-      if (json?.ok) setRates(json.rates);
+      try {
+        const data = await api<{ ok: boolean; rates: Rates }>("rates", "GET");
+        if (!alive) return;
+        setRates(data.rates);
+      } catch (e) {
+        console.error(e);
+      }
     })();
 
     return () => {

@@ -1,7 +1,8 @@
-import { getCurrency } from "@/utils/currency";
+import { getCountry, getCurrency } from "@/utils/currency";
 import HeaderClient from "./header-client";
 
 export default async function Header() {
   const currency = await getCurrency();
-  return <HeaderClient initialCurrency={currency} />;
+  const country = await getCountry();
+  return <HeaderClient initialCurrency={currency} initialCountry={country} />;
 }

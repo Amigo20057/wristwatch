@@ -3,6 +3,9 @@ export type Currency = "USD" | "EUR" | "UAH";
 export const isCurrency = (v: Currency): v is Currency =>
   v === "USD" || v === "EUR" || v === "UAH";
 
+export const isCountry = (v: CountryCode): v is CountryCode =>
+  v === "US" || v === "DE" || v === "UA";
+
 export type CountryCode = "US" | "DE" | "UA";
 
 export type CountryOption = {

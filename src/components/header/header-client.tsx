@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Search, User, ShoppingBag } from "lucide-react";
-import type { Currency } from "@/types/currency.interface";
+import type { CountryCode, Currency } from "@/types/currency.interface";
 import CurrencySelector from "./currency-selector";
 
 export default function HeaderClient({
   initialCurrency,
+  initialCountry,
 }: {
   initialCurrency: Currency;
+  initialCountry: CountryCode;
 }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -54,7 +56,10 @@ export default function HeaderClient({
         </div>
 
         <div className="flex items-center gap-6 text-sm">
-          <CurrencySelector initialCurrency={initialCurrency} />
+          <CurrencySelector
+            initialCurrency={initialCurrency}
+            initialCountry={initialCountry}
+          />
 
           <Search
             size={20}
