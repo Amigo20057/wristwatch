@@ -1,8 +1,6 @@
-import { useCurrencyContext } from "@/hoc/currency";
-import useRates from "@/hooks/useRates";
+import useFormatPrice from "@/hooks/useFormatPrice";
 import { symbolCurrencies } from "@/types/currency.interface";
-import { IWatch } from "@/types/watch.interface";
-import { convertFromUsd, formatMoney } from "@/utils/price";
+import type { IWatch } from "@/types/watch.interface";
 import Image from "next/image";
 
 interface IProps {
@@ -10,13 +8,7 @@ interface IProps {
 }
 
 export default function Card({ watch }: IProps) {
-  const currency = useCurrencyContext();
-  const rates = useRates();
-
-  const value = rates
-    ? convertFromUsd(watch.price, currency, rates)
-    : watch.price;
-  const priceText = rates ? formatMoney(value, currency) : "0,000";
+  const { priceText, currency } = useFormatPrice(watch.price);
 
   return (
     <div className="w-[279px] h-[500px] ">

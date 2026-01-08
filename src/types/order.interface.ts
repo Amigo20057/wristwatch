@@ -1,5 +1,5 @@
 import { OrderStatus } from "@/generated/prisma/enums";
-import { IWatch } from "./watch.interface";
+import type { IWatch } from "./watch.interface";
 
 export interface IOrder {
   id?: bigint;
@@ -24,5 +24,3 @@ export interface ITrackOrder {
   order: string;
   phoneNumber: string;
 }
-
-export interface ICreateOrder {}

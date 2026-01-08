@@ -1,4 +1,4 @@
-import { IWatch } from "./watch.interface";
+import type { IWatch } from "./watch.interface";
 
 export interface ICartItem {
   id: number;

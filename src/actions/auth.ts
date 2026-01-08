@@ -1,6 +1,6 @@
 "use server";
 
-import { IUser } from "@/types/user.interface";
+import type { IUser } from "@/types/user.interface";
 import { signIn, signOut } from "@/utils/auth";
 import prisma from "@/utils/prisma";
 import { hash } from "argon2";

@@ -1,6 +1,6 @@
 "use client";
 
-import { ICart } from "@/types/cart.interface";
+import type { ICart } from "@/types/cart.interface";
 import { useState } from "react";
 
 const getCartFromLocalStorage = (): ICart | null => {
@@ -9,8 +9,6 @@ const getCartFromLocalStorage = (): ICart | null => {
 
 export default function Cart() {
   const [watches, setWatches] = useState<ICart | null>(getCartFromLocalStorage);
-
-  console.log(watches);
 
   return <div></div>;
 }

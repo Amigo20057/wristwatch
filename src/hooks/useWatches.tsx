@@ -1,6 +1,6 @@
 import { fetchWatch } from "@/actions/watch";
 import { WatchStatus } from "@/store/watch.store";
-import { IWatch } from "@/types/watch.interface";
+import type { IWatch } from "@/types/watch.interface";
 import { useEffect, useState } from "react";
 
 export default function useWatches() {

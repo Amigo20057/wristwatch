@@ -1,7 +1,7 @@
 "use client";
 
 import { getOrder } from "@/actions/order";
-import { ITrackOrder } from "@/types/order.interface";
+import type { ITrackOrder } from "@/types/order.interface";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 

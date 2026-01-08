@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useWatchStore } from "@/store/watch.store";
-import { IWatch } from "@/types/watch.interface";
+import type { IWatch } from "@/types/watch.interface";
 import Watches from "@/components/watches";
 
 export default function WatchesClient({
@@ -11,8 +11,6 @@ export default function WatchesClient({
   initialWatches: IWatch[];
 }) {
   const { data, setWatchState } = useWatchStore();
-
-  console.log(data);
 
   useEffect(() => {
     setWatchState("success", initialWatches);

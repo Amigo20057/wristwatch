@@ -1,7 +1,7 @@
 "use client";
 
 import { registerUser, signInWithCredentials } from "@/actions/auth";
-import { IUser } from "@/types/user.interface";
+import type { IUser } from "@/types/user.interface";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";

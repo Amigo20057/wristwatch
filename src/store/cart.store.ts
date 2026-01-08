@@ -1,4 +1,4 @@
-import { ICart } from "@/types/cart.interface";
+import type { ICart } from "@/types/cart.interface";
 import { create } from "zustand";
 
 interface CartState {

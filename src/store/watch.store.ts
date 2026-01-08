@@ -1,4 +1,4 @@
-import { IWatch } from "@/types/watch.interface";
+import type { IWatch } from "@/types/watch.interface";
 import { create } from "zustand";
 
 export type WatchStatus = "success" | "error" | "loading";

@@ -1,29 +1,25 @@
 "use client";
 
-import { useCurrencyContext } from "@/hoc/currency";
-import useRates from "@/hooks/useRates";
+import useFormatPrice from "@/hooks/useFormatPrice";
 import { useCartStore } from "@/store/cart.store";
-import { ICart } from "@/types/cart.interface";
+import type { ICart, ICartItem } from "@/types/cart.interface";
 import { symbolCurrencies } from "@/types/currency.interface";
-import { IWatch } from "@/types/watch.interface";
+import type { IWatch } from "@/types/watch.interface";
 import { api } from "@/utils/api";
-import { convertFromUsd, formatMoney } from "@/utils/price";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 
-export default function ProductClient({ watch }: { watch: IWatch }) {
+export default function ProductClient({
+  watch,
+  cartRaw,
+}: {
+  watch: IWatch;
+  cartRaw: ICart;
+}) {
   const [productCount, setProductCount] = useState<number>(1);
-  const { cart, setCart } = useCartStore();
-  const currency = useCurrencyContext();
-  const rates = useRates();
-
-  const value = rates
-    ? convertFromUsd(watch.price, currency, rates)
-    : watch.price;
-  const priceText = rates ? formatMoney(value, currency) : "0,000";
-
-  console.log(cart);
+  const { setCart } = useCartStore();
+  const { priceText, currency } = useFormatPrice(watch.price);
 
   const incrementCountProduct = useCallback(() => {
     setProductCount((prev) => prev + 1);
@@ -34,45 +30,51 @@ export default function ProductClient({ watch }: { watch: IWatch }) {
   }, []);
 
   const handleAddToCart = async (watch: IWatch) => {
-    const cartRaw = localStorage.getItem("cart");
+    const baseCart: ICart = cartRaw ?? {
+      items: [],
+      totalCount: 0,
+      totalPrice: 0,
+    };
 
-    const cart: ICart = cartRaw
-      ? JSON.parse(cartRaw)
-      : { items: [], totalCount: 0, totalPrice: 0 };
-
-    const existingIndex = cart.items.findIndex(
+    const existingIndex = baseCart.items.findIndex(
       (item) => item.watch.id === watch.id
     );
 
-    if (existingIndex !== -1) {
-      const item = cart.items[existingIndex];
-      const newQuantity = item.quantity + productCount;
+    let updatedItems: ICartItem[];
 
-      cart.items[existingIndex] = {
-        ...item,
-        quantity: newQuantity,
-        totalPrice: newQuantity * item.watch.price,
-      };
-    } else {
-      cart.items.push({
-        id: Number(watch?.id),
-        watch,
-        quantity: productCount,
-        totalPrice: productCount * watch.price,
+    if (existingIndex !== -1) {
+      updatedItems = baseCart.items.map((item, index) => {
+        if (index !== existingIndex) return item;
+
+        const newQuantity = item.quantity + productCount;
+
+        return {
+          ...item,
+          quantity: newQuantity,
+          totalPrice: newQuantity * item.watch.price,
+        };
       });
+    } else {
+      updatedItems = [
+        ...baseCart.items,
+        {
+          id: Number(watch.id),
+          watch,
+          quantity: productCount,
+          totalPrice: productCount * watch.price,
+        },
+      ];
     }
 
-    cart.totalCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
-    cart.totalPrice = cart.items.reduce(
-      (sum, item) => sum + item.totalPrice,
-      0
-    );
+    const updatedCart: ICart = {
+      items: updatedItems,
+      totalCount: updatedItems.reduce((sum, item) => sum + item.quantity, 0),
+      totalPrice: updatedItems.reduce((sum, item) => sum + item.totalPrice, 0),
+    };
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    await api<void>("cart", "POST", updatedCart);
 
-    await api<void>("cart", "POST", cart);
-
-    setCart(cart);
+    setCart(updatedCart);
     setProductCount(1);
   };
 
