@@ -58,16 +58,29 @@ export default function HeaderClient({
 
           <Search
             size={20}
-            className="cursor-pointer opacity-80 hover:opacity-100"
+            className="cursor-pointer opacity-80           
+            transition-transform
+            duration-100
+            ease-out
+            hover:scale-110"
           />
           <User
             onClick={() => router.push("/profile")}
             size={20}
-            className="cursor-pointer opacity-80 hover:opacity-100"
+            className="cursor-pointer opacity-80           
+            transition-transform
+            duration-100
+            ease-out
+            hover:scale-110"
           />
           <ShoppingBag
+            onClick={() => router.push("/cart")}
             size={20}
-            className="cursor-pointer opacity-80 hover:opacity-100"
+            className="cursor-pointer opacity-80           
+            transition-transform
+            duration-100
+            ease-out
+            hover:scale-110"
           />
         </div>
       </div>

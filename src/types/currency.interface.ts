@@ -1,6 +1,6 @@
 export type Currency = "USD" | "EUR" | "UAH";
 
-export const isCurrency = (v: any): v is Currency =>
+export const isCurrency = (v: Currency): v is Currency =>
   v === "USD" || v === "EUR" || v === "UAH";
 
 export type CountryCode = "US" | "DE" | "UA";
@@ -12,4 +12,12 @@ export type CountryOption = {
   defaultCurrency: Currency;
   currencies: Currency[];
   currencySymbol: Record<Currency, string>;
+};
+
+export type Symbols = "$" | "€" | "₴";
+
+export const symbolCurrencies: Record<Currency, Symbols> = {
+  EUR: "€",
+  USD: "$",
+  UAH: "₴",
 };

@@ -1,10 +1,10 @@
-import { isCurrency } from "@/types/currency.interface";
+import { Currency, isCurrency } from "@/types/currency.interface";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { currency } = (await req.json()) as { currency?: string };
+  const { currency } = (await req.json()) as { currency?: Currency };
 
-  if (!isCurrency(currency)) {
+  if (!isCurrency(currency!)) {
     return NextResponse.json(
       { ok: false, error: "Invalid currency" },
       { status: 400 }

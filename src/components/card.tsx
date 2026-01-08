@@ -1,6 +1,6 @@
 import { useCurrencyContext } from "@/hoc/currency";
 import useRates from "@/hooks/useRates";
-import { Currency } from "@/types/currency.interface";
+import { symbolCurrencies } from "@/types/currency.interface";
 import { IWatch } from "@/types/watch.interface";
 import { convertFromUsd, formatMoney } from "@/utils/price";
 import Image from "next/image";
@@ -8,14 +8,6 @@ import Image from "next/image";
 interface IProps {
   watch: IWatch;
 }
-
-type Symbols = "$" | "€" | "₴";
-
-const symbolCurrencies: Record<Currency, Symbols> = {
-  EUR: "€",
-  USD: "$",
-  UAH: "₴",
-};
 
 export default function Card({ watch }: IProps) {
   const currency = useCurrencyContext();

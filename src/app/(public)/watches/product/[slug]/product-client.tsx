@@ -1,8 +1,12 @@
 "use client";
 
+import { useCurrencyContext } from "@/hoc/currency";
+import useRates from "@/hooks/useRates";
 import { useCartStore } from "@/store/cart.store";
 import { ICart } from "@/types/cart.interface";
+import { symbolCurrencies } from "@/types/currency.interface";
 import { IWatch } from "@/types/watch.interface";
+import { convertFromUsd, formatMoney } from "@/utils/price";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
@@ -10,6 +14,13 @@ import { useCallback, useState } from "react";
 export default function ProductClient({ watch }: { watch: IWatch }) {
   const [productCount, setProductCount] = useState<number>(1);
   const { cart, setCart } = useCartStore();
+  const currency = useCurrencyContext();
+  const rates = useRates();
+
+  const value = rates
+    ? convertFromUsd(watch.price, currency, rates)
+    : watch.price;
+  const priceText = rates ? formatMoney(value, currency) : "0,000";
 
   console.log(cart);
 
@@ -21,7 +32,7 @@ export default function ProductClient({ watch }: { watch: IWatch }) {
     setProductCount((prev) => Math.max(1, prev - 1));
   }, []);
 
-  const handleAddToCart = (watch: IWatch) => {
+  const handleAddToCart = async (watch: IWatch) => {
     const cartRaw = localStorage.getItem("cart");
 
     const cart: ICart = cartRaw
@@ -57,6 +68,13 @@ export default function ProductClient({ watch }: { watch: IWatch }) {
     );
 
     localStorage.setItem("cart", JSON.stringify(cart));
+
+    await fetch("/api/cart", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cart),
+    });
+
     setCart(cart);
     setProductCount(1);
   };
@@ -100,7 +118,7 @@ export default function ProductClient({ watch }: { watch: IWatch }) {
               letterSpacing: "2px",
             }}
           >
-            ${new Intl.NumberFormat("de-DE").format(watch.price)} USD
+            {symbolCurrencies[currency]} {priceText} {currency}{" "}
           </p>
           <div>
             <p

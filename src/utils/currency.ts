@@ -4,7 +4,7 @@ import { Currency, isCurrency } from "@/types/currency.interface";
 
 export async function getCurrency(): Promise<Currency> {
   const cookieStore = await cookies();
-  const c = cookieStore.get("currency")?.value;
+  const c = cookieStore.get("currency")?.value as Currency;
 
   return isCurrency(c) ? c : "USD";
 }
