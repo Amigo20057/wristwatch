@@ -9,7 +9,7 @@ export default function PublicLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div className="w-full min-h-screen flex flex-col justify-between">
       <CurrencyProviderServer>
         <Header />
         {children}

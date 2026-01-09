@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import type { IWatch } from "@/types/watch.interface";
 import SkeletonCard from "./skeleton-card";
 import Link from "next/link";
+import { slugify } from "@/utils/slugify";
 
 type WatchType = "Best Seller" | "Modern Elegance" | "Classic" | "Elegance";
 
@@ -87,7 +88,10 @@ export default function Watches({
 
       <div className="flex gap-2">
         {visibleData.map((el) => (
-          <Link key={el.id} href={`/watches/product/${el.id}`}>
+          <Link
+            key={el.id}
+            href={`/watches/product/${el.id}-${slugify(el.name)}`}
+          >
             <Card watch={el} />
           </Link>
         ))}
