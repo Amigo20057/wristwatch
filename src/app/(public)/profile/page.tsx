@@ -1,28 +1,14 @@
-"use client";
+import ProfileClient from "./profile-client";
+import { getOrdersByUserId } from "@/actions/order";
+import { auth } from "@/utils/auth";
+import { serializePrisma } from "@/utils/serialize";
 
-import { signOutFunc } from "@/actions/auth";
-import useAuthGuard from "@/hooks/useAuthGuard";
-import { useAuthStore } from "@/store/auth.store";
-import { useRouter } from "next/navigation";
+export default async function Profile() {
+  const session = await auth();
+  const userId = session?.user?.id;
 
-export default function Profile() {
-  useAuthGuard("profile");
-  const router = useRouter();
-  const { setAuthState } = useAuthStore();
+  const ordersRaw = userId ? await getOrdersByUserId(userId) : [];
+  const orders = serializePrisma(ordersRaw);
 
-  const handleLogout = async () => {
-    try {
-      await signOutFunc();
-      router.push("/");
-    } catch (error) {
-      console.error(error);
-    }
-    setAuthState("unauthenticated", null);
-  };
-
-  return (
-    <div className="w-full h-screen">
-      <button onClick={handleLogout}>LOGOUT</button>
-    </div>
-  );
+  return <ProfileClient orders={orders} />;
 }

@@ -13,34 +13,30 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Credentials({
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "Password" },
+        password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
         try {
-          if (!credentials?.email || !credentials?.password) {
-            throw new Error("Email and password required");
-          }
+          if (!credentials?.email || !credentials?.password) return null;
 
           const { email, password } = await signInSchema.parseAsync(
             credentials
           );
 
           const user = await getUserFromDb(email);
-
-          if (!user) {
-            throw new Error("Invalid credentials.");
-          }
+          if (!user) return null;
 
           const isPasswordValid = await verify(user.password, password);
+          if (!isPasswordValid) return null;
 
-          if (!isPasswordValid) {
-            throw new Error("Wrong data");
-          }
-          return { id: user.id, email: user.email };
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            surname: user.surname,
+          };
         } catch (error) {
-          if (error instanceof ZodError) {
-            return null;
-          }
+          if (error instanceof ZodError) return null;
           return null;
         }
       },
@@ -54,9 +50,27 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        token.sub = user.id;
       }
       return token;
+    },
+
+    async session({ session, token }) {
+      if (!session.user || !token.sub) return session;
+
+      const dbUser = await prisma.user.findUnique({
+        where: { id: token.sub },
+        select: { id: true, name: true, surname: true, email: true },
+      });
+
+      if (dbUser) {
+        session.user.id = dbUser.id;
+        session.user.name = dbUser.name;
+        session.user.surname = dbUser.surname;
+        session.user.email = dbUser.email;
+      }
+
+      return session;
     },
   },
 });

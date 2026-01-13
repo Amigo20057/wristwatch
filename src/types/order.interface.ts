@@ -1,15 +1,24 @@
 import { OrderStatus } from "@/generated/prisma/enums";
-import type { IWatch } from "./watch.interface";
+import { IWatch } from "./watch.interface";
+
+type State = "Ukraine" | "United States" | "Germany";
+
+interface IOrderItem {
+  orderId: bigint;
+  watchId: bigint;
+  quantity: number;
+  watch: IWatch;
+}
 
 export interface IOrder {
   id?: bigint;
   userId: string;
-  items: IWatch[];
+  items: IOrderItem[];
   firstName: string;
   lastName: string;
   address: string;
   city: string;
-  state: string;
+  state: State;
   zipCode: string;
   phone: string;
   cardNumber: string;
@@ -18,6 +27,7 @@ export interface IOrder {
   nameOnCard: string;
   status: OrderStatus;
   orderNumber: string;
+  email: string;
 }
 
 export interface ITrackOrder {

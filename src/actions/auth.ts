@@ -29,7 +29,7 @@ export async function registerUser(data: IUser) {
     return user;
   } catch (error) {
     console.error("Error register user", error);
-    return { error: "Error register user" };
+    return { error: "Error register user", err: error };
   }
 }
 

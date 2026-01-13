@@ -11,4 +11,5 @@ export interface ICart {
   items: ICartItem[];
   totalCount: number;
   totalPrice: number;
+  watch: IWatch | null;
 }

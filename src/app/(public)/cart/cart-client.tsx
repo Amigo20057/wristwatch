@@ -6,25 +6,27 @@ import useFormatPrice from "@/hooks/useFormatPrice";
 import { useCartStore } from "@/store/cart.store";
 import type { ICart } from "@/types/cart.interface";
 import { symbolCurrencies } from "@/types/currency.interface";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function CartClient({ initialCart }: { initialCart: ICart }) {
+  const router = useRouter();
   const { cart, setCart } = useCartStore();
   const { priceText, currency } = useFormatPrice(cart?.totalPrice || 0);
+
+  console.log(cart);
 
   useEffect(() => {
     setCart(initialCart);
   }, [initialCart, setCart]);
 
-  if (!cart) return null;
-
   return (
     <div
       className={`w-full ${
-        cart.items.length > 0 ? "min-h-[700px]" : "min-h-[200px]"
+        cart?.items.length > 0 ? "min-h-[700px]" : "min-h-[200px]"
       } bg-white flex justify-center pb-20`}
     >
-      {cart.items.length > 0 ? (
+      {cart?.items.length > 0 ? (
         <div className="w-[1100px] pt-10">
           <h1
             className="mb-10"
@@ -63,7 +65,10 @@ export default function CartClient({ initialCart }: { initialCart: ICart }) {
                 </span>
               </div>
 
-              <button className="w-full h-[56px] bg-black text-white cursor-pointer transition-transform duration-100 ease-out hover:scale-105">
+              <button
+                className="w-full h-[56px] bg-black text-white cursor-pointer transition-transform duration-100 ease-out hover:scale-105"
+                onClick={() => router.push("/checkouts")}
+              >
                 Check out
               </button>
             </div>

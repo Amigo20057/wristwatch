@@ -96,6 +96,8 @@ model Order {
 
   orderNumber String @unique @map("order_number")
 
+  email String?
+
   firstName String @map("first_name")
   lastName String @map("last_name")
   address String
