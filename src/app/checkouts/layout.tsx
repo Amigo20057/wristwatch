@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Amiri } from "next/font/google";
 import "../globals.css";
 import HeaderCheckouts from "@/components/header/header-checkout";
+import CurrencyProviderServer from "@/hoc/currency-server";
 
 const geistSans = Amiri({
   variable: "--font",
@@ -23,8 +24,10 @@ export default async function RootLayout({
     <section
       className={`${geistSans.variable} font-amiri antialiased bg-[#f5f5f5]!`}
     >
-      <HeaderCheckouts />
-      {children}
+      <CurrencyProviderServer>
+        <HeaderCheckouts />
+        {children}
+      </CurrencyProviderServer>
     </section>
   );
 }

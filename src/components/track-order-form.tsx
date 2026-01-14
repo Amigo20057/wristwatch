@@ -29,8 +29,6 @@ export default function TrackOrderForm() {
 
       const result = await getOrder(data);
 
-      console.log("Track result:", result);
-
       reset();
     } catch (e) {
       setServerError(e instanceof Error ? e.message : "Unknown error");
@@ -48,7 +46,7 @@ export default function TrackOrderForm() {
       <div className="flex flex-col p-5">
         <div className="border-b-2 p-5 cursor-pointer mb-3">
           <p style={{ fontFamily: "serif" }} className="text-center">
-            Order Number
+            Номер замовлення
           </p>
         </div>
 
@@ -56,20 +54,20 @@ export default function TrackOrderForm() {
           <div>
             <input
               type="text"
-              placeholder="Order Number"
+              placeholder="Номер замовлення"
               {...register("order", {
-                required: "Order number is required",
+                required: "Номер замовлення є обов'язковим",
                 minLength: {
                   value: 4,
-                  message: "Order number is too short",
+                  message: "Номер замовлення занадто короткий",
                 },
                 maxLength: {
                   value: 30,
-                  message: "Order number is too long",
+                  message: "Номер замовлення занадто довгий",
                 },
                 pattern: {
                   value: /^[A-Za-z0-9-_]+$/,
-                  message: "Only letters, numbers, '-' and '_' allowed",
+                  message: "Допускаються лише літери, цифри, '-' та '_'",
                 },
               })}
             />
@@ -83,10 +81,10 @@ export default function TrackOrderForm() {
           <div>
             <input
               type="tel"
-              placeholder="Phone Number (+380...)"
+              placeholder="Номер телефону (+380...)"
               inputMode="tel"
               {...register("phoneNumber", {
-                required: "Phone number is required",
+                required: "Номер телефону є обов'язковим",
                 validate: (value) => {
                   const digits = value.replace(/\D/g, "");
                   if (digits.startsWith("380") && digits.length === 12) {
@@ -95,7 +93,7 @@ export default function TrackOrderForm() {
                   if (digits.startsWith("0") && digits.length === 10) {
                     return true;
                   }
-                  return "Enter a valid Ukrainian phone number";
+                  return "Введіть дійсний номер телефону України";
                 },
               })}
             />
@@ -118,7 +116,9 @@ export default function TrackOrderForm() {
             disabled={isLoading || isSubmitting}
             className="w-full h-[60px] bg-black text-white rounded-xl mt-3 transition-transform duration-100 ease-out hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
           >
-            {isLoading || isSubmitting ? "Tracking..." : "Track Your Order"}
+            {isLoading || isSubmitting
+              ? "Відстеження..."
+              : "Відстежити замовлення"}
           </button>
         </div>
       </div>

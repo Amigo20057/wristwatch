@@ -36,13 +36,13 @@ export default function CartClient({ initialCart }: { initialCart: ICart }) {
               fontWeight: "100",
             }}
           >
-            Your cart
+            Ваш кошик
           </h1>
 
           <div className="grid grid-cols-[2fr_1fr_1fr] pb-4 border-b border-[#eeeeee] text-[11px] tracking-[0.2em] text-gray-500">
-            <span>PRODUCT</span>
-            <span className="text-center">QUANTITY</span>
-            <span className="text-right">TOTAL</span>
+            <span>ПРОДУКТ</span>
+            <span className="text-center">КІЛЬКІСТЬ</span>
+            <span className="text-right">ВСЬОГО</span>
           </div>
 
           {cart.items.map((item) => (
@@ -69,7 +69,7 @@ export default function CartClient({ initialCart }: { initialCart: ICart }) {
                 className="w-full h-[56px] bg-black text-white cursor-pointer transition-transform duration-100 ease-out hover:scale-105"
                 onClick={() => router.push("/checkouts")}
               >
-                Check out
+                Замовити
               </button>
             </div>
           </div>
@@ -84,9 +84,9 @@ export default function CartClient({ initialCart }: { initialCart: ICart }) {
               fontWeight: "100",
             }}
           >
-            Your cart is empty
+            Ваш кошик порожній
           </h1>
-          <ButtonCommonLink href="/watches" text="Continue shopping" />
+          <ButtonCommonLink href="/watches" text="Продовжуйте покупки" />
         </div>
       )}
     </div>

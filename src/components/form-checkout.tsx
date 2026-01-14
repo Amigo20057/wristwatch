@@ -42,7 +42,7 @@ export default function FormCheckout({
       lastName: "",
       address: "",
       city: "",
-      state: "Ukraine",
+      state: "Україна",
       zipCode: "",
       phone: "",
       cardNumber: "",
@@ -64,7 +64,6 @@ export default function FormCheckout({
       });
 
       await api("cart", "DELETE");
-
       router.push("/");
     } catch (error) {
       console.error(error);
@@ -75,18 +74,20 @@ export default function FormCheckout({
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
       <div className="mx-auto w-full max-w-[560px] px-6 py-10">
         <div className="flex items-end justify-between">
-          <h2 className="text-[22px] font-semibold text-[#1a1a1a]">Contact</h2>
+          <h2 className="text-[22px] font-semibold text-[#1a1a1a]">
+            Контактна інформація
+          </h2>
         </div>
 
         <div className="mt-4">
           <input
-            placeholder="Email"
+            placeholder="Електронна пошта"
             className="h-11 w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
             {...register("email", {
-              required: "Email is required",
+              required: "Електронна пошта є обовʼязковою",
               pattern: {
                 value: /^\S+@\S+\.\S+$/,
-                message: "Invalid email",
+                message: "Некоректна електронна пошта",
               },
             })}
           />
@@ -98,35 +99,36 @@ export default function FormCheckout({
         </div>
 
         <h2 className="mt-10 text-[22px] font-semibold text-[#1a1a1a]">
-          Delivery
+          Доставка
         </h2>
 
         <div className="mt-4">
           <select
             className="h-11 w-full rounded-lg border border-[#dadada] bg-white px-4 text-[14px] outline-none focus:border-black"
             {...register("state")}
-            defaultValue="Ukraine"
+            defaultValue="Україна"
           >
-            <option>Ukraine</option>
-            <option>Germany</option>
-            <option>United States</option>
+            <option>Україна</option>
+            <option>Німеччина</option>
+            <option>Сполучені Штати</option>
           </select>
         </div>
 
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
             <input
-              placeholder="First name (optional)"
+              placeholder="Імʼя "
               className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
               {...register("firstName")}
             />
           </div>
-
           <div>
             <input
-              placeholder="Last name"
+              placeholder="Прізвище"
               className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
-              {...register("lastName", { required: "Last name is required" })}
+              {...register("lastName", {
+                required: "Прізвище є обовʼязковим",
+              })}
             />
             {errors.lastName && (
               <p className="mt-2 text-[12px] text-red-600">
@@ -135,12 +137,13 @@ export default function FormCheckout({
             )}
           </div>
         </div>
-
         <div className="mt-3">
           <input
-            placeholder="Address"
+            placeholder="Адреса"
             className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
-            {...register("address", { required: "Address is required" })}
+            {...register("address", {
+              required: "Адреса є обовʼязковою",
+            })}
           />
           {errors.address && (
             <p className="mt-2 text-[12px] text-red-600">
@@ -152,9 +155,11 @@ export default function FormCheckout({
         <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
             <input
-              placeholder="Postal code"
+              placeholder="Поштовий індекс"
               className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
-              {...register("zipCode", { required: "Postal code is required" })}
+              {...register("zipCode", {
+                required: "Поштовий індекс є обовʼязковим",
+              })}
             />
             {errors.zipCode && (
               <p className="mt-2 text-[12px] text-red-600">
@@ -162,12 +167,13 @@ export default function FormCheckout({
               </p>
             )}
           </div>
-
           <div>
             <input
-              placeholder="City"
+              placeholder="Місто"
               className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
-              {...register("city", { required: "City is required" })}
+              {...register("city", {
+                required: "Місто є обовʼязковим",
+              })}
             />
             {errors.city && (
               <p className="mt-2 text-[12px] text-red-600">
@@ -179,9 +185,11 @@ export default function FormCheckout({
 
         <div className="mt-3">
           <input
-            placeholder="Phone"
+            placeholder="Телефон"
             className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
-            {...register("phone", { required: "Phone is required" })}
+            {...register("phone", {
+              required: "Номер телефону є обовʼязковим",
+            })}
           />
           {errors.phone && (
             <p className="mt-2 text-[12px] text-red-600">
@@ -189,82 +197,57 @@ export default function FormCheckout({
             </p>
           )}
         </div>
-
-        {/* PAYMENT */}
         <h2 className="mt-10 text-[22px] font-semibold text-[#1a1a1a]">
-          Payment
+          Оплата
         </h2>
         <p className="mt-1 text-[12px] text-gray-500">
-          All transactions are secure and encrypted.
+          Усі транзакції захищені та зашифровані.
         </p>
-
         <div className="mt-4 space-y-3">
           <input
-            placeholder="Card number"
+            placeholder="Номер картки"
             className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
-            {...register("cardNumber", { required: "Card number is required" })}
+            {...register("cardNumber", {
+              required: "Номер картки є обовʼязковим",
+            })}
           />
-          {errors.cardNumber && (
-            <p className="text-[12px] text-red-600">
-              {String(errors.cardNumber.message)}
-            </p>
-          )}
-
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <div>
-              <input
-                placeholder="Expiration date (MM/YY)"
-                className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
-                {...register("expirationDate", {
-                  required: "Expiration date is required",
-                })}
-              />
-              {errors.expirationDate && (
-                <p className="mt-2 text-[12px] text-red-600">
-                  {String(errors.expirationDate.message)}
-                </p>
-              )}
-            </div>
+            <input
+              placeholder="Термін дії (ММ/РР)"
+              className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
+              {...register("expirationDate", {
+                required: "Термін дії є обовʼязковим",
+              })}
+            />
 
-            <div>
-              <input
-                placeholder="Security code"
-                className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
-                {...register("securityCode", {
-                  required: "Security code is required",
-                })}
-              />
-              {errors.securityCode && (
-                <p className="mt-2 text-[12px] text-red-600">
-                  {String(errors.securityCode.message)}
-                </p>
-              )}
-            </div>
+            <input
+              placeholder="CVV / CVC"
+              className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
+              {...register("securityCode", {
+                required: "Код безпеки є обовʼязковим",
+              })}
+            />
           </div>
 
           <input
-            placeholder="Name on card"
+            placeholder="Імʼя на картці"
             className="h-[44px] w-full rounded-lg border border-[#dadada] px-4 text-[14px] outline-none focus:border-black"
             {...register("nameOnCard", {
-              required: "Name on card is required",
+              required: "Імʼя на картці є обовʼязковим",
             })}
           />
-          {errors.nameOnCard && (
-            <p className="text-[12px] text-red-600">
-              {String(errors.nameOnCard.message)}
-            </p>
-          )}
         </div>
 
         <button
           type="submit"
           className="mt-10 h-[52px] w-full rounded-lg bg-black text-white text-[14px] tracking-wide hover:opacity-90"
         >
-          Pay now
+          Оплатити зараз
         </button>
 
         <p className="mt-5 text-[12px] text-gray-500 leading-5">
-          By placing your order you agree to our terms and privacy policy.
+          Оформлюючи замовлення, ви погоджуєтеся з нашими умовами та політикою
+          конфіденційності.
         </p>
       </div>
     </form>

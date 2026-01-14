@@ -147,7 +147,7 @@ export default function MySearch({ setIsOpenSearch }: IProps) {
                   setActiveTick((t) => t + 1);
                 }
               }}
-              placeholder="Search "
+              placeholder="Пошук "
               className="w-full h-[46px] px-4 text-white outline-none border-[#9fa3a8] border"
             />
 

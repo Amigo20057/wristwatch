@@ -51,7 +51,7 @@ export default function Home() {
               letterSpacing: "3px",
             }}
           >
-            Design
+            Дизайн
           </h1>
           <p
             className="text-[14px] text-[#c3c5c9] leading-[200%]"
@@ -60,22 +60,26 @@ export default function Home() {
               fontFamily: "serif",
             }}
           >
-            In the refined quiet of a city studio, a master designer lays the
-            foundation for a timeless creation. Inspired by the effortless
-            harmony of nature and the bold structure of modern architecture,
-            they envision a watch that exudes elegance while delivering
-            impeccable function.
+            У вишуканій тиші міської студії, майстер-дизайнер закладає основу
+            для позачасового творіння. Натхненні невимушеною гармонією природи
+            та сміливою структурою сучасної архітектури, вони уявляють собі
+            годинник, який випромінює елегантність, водночас забезпечуючи
+            бездоганну функціональність.
           </p>
         </div>
       </section>
       <Watches titleText="Modern Elegance" type="Best Seller" limit={2} />
       <ButtonCommonLink
-        text="View all"
+        text="Переглянути всі"
         href="/watches"
         customStyles="m-auto mb-5"
       />
       <Watches titleText="Classic " type="Best Seller" limit={2} />
-      <ButtonCommonLink text="View all" href="/watches" customStyles="m-auto" />
+      <ButtonCommonLink
+        text="Переглянути всі"
+        href="/watches"
+        customStyles="m-auto"
+      />
       <section className="w-[1200px] m-auto min-h-[400px] flex items-center relative pt-0 pl-[30px] pr-[30px] mb-5 mt-20">
         <Image
           src="/prototyping.png"
@@ -93,7 +97,7 @@ export default function Home() {
               letterSpacing: "3px",
             }}
           >
-            Prototyping
+            Прототипування
           </h1>
           <p
             className="text-[14px] text-[#c3c5c9] leading-[200%]"
@@ -102,10 +106,10 @@ export default function Home() {
               fontFamily: "serif",
             }}
           >
-            With designs in hand, skilled artisans set to work crafting a
-            prototype. They select premium materials—perhaps a stainless steel
-            case paired with a sapphire crystal face—to bring the design to
-            life.
+            Маючи в руках макети, досвідчені майстри взялися за створення
+            прототипу. Вони обирають високоякісні матеріали — можливо, корпус з
+            нержавіючої сталі в поєднанні з сапфіровим склом — щоб втілити
+            дизайн в життя.
           </p>
         </div>
       </section>
@@ -127,7 +131,7 @@ export default function Home() {
               letterSpacing: "3px",
             }}
           >
-            Assembly and Quality Assurance
+            Монтаж і гарантія якості
           </h1>
           <p
             className="text-[14px] text-[#c3c5c9] leading-[200%]"
@@ -136,42 +140,15 @@ export default function Home() {
               fontFamily: "serif",
             }}
           >
-            Once the prototype meets exacting standards, the watch enters
-            production.Master watchmakers assemble each timepiece by hand,
-            integrating the intricate movement with the crafted case and
-            meticulously attaching the dial and hands.
+            Щойно прототип відповідає суворим стандартам, годинник надходить у
+            виробництво. Майстри-годинникарі збирають кожен годинник вручну,
+            поєднуючи складний механізм з виготовленим корпусом та ретельно
+            скріплюючи циферблат і стрілки.
           </p>
         </div>
       </section>
-      <section className="w-full bg-[#2b323f]">
-        <div className="w-[1200px] m-auto min-h-[400px] flex items-center relative pt-0 pl-[30px] pr-[30px] mb-5 mt-20">
-          <Image
-            src="/story.png"
-            alt="story"
-            width={546}
-            height={330}
-            className="shrink-0 border h-[330px] w-[546px] object-cover"
-          />
-          <div className="w-[600px] bg-[#2b323f] p-[60px] absolute right-0">
-            <h1
-              className="text-[42px] text-white mb-5"
-              style={{
-                fontFamily: "serif",
-                fontWeight: "100",
-                letterSpacing: "2px",
-              }}
-            >
-              Read Our Story
-            </h1>
-            <ButtonCommonLink
-              text="Read now"
-              href="/out-story"
-              customStyles="m-auto mb-5"
-            />
-          </div>
-        </div>
-      </section>
-      <section className="bg-[#2b323f] flex flex-col items-center">
+
+      <section className="bg-[#2b323f] flex flex-col items-center pt-[20px]">
         <div className="text-center">
           <h1
             className="text-[18px] text-white mb-5"
@@ -190,8 +167,8 @@ export default function Home() {
               fontFamily: "serif",
             }}
           >
-            Get access to exclusive offers, and a few secrets every now and
-            then.
+            Отримайте доступ до ексклюзивних пропозицій та кількох секретів час
+            від часу.
           </p>
         </div>
         <div className="relative mt-5">

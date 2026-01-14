@@ -12,7 +12,7 @@ export default function Contact() {
             fontWeight: "100",
           }}
         >
-          Contact
+          Контакт
         </h1>
         <div
           className=" [&_input]:w-[351px] [&_input]:h-[45px] [&_input]:border [&_input]:border-[#737373] [&_input]:hover:border-[#737373]
@@ -23,21 +23,21 @@ export default function Contact() {
         "
         >
           <div className="gap-5 flex">
-            <input type="text" placeholder="Name" spellCheck="false" />
+            <input type="text" placeholder="Ім'я" spellCheck="false" />
             <input type="email" placeholder="Email" spellCheck="false" />
           </div>
           <input
             type="text"
             className="w-full! mt-5"
-            placeholder="Phone number"
+            placeholder="Номер телефону"
           />
           <textarea
             className="w-full! min-h-[100px] text-black placeholder-[#9fa3a8] px-6 pt-2 pb-2 pr-12 
             border border-[#737373] mt-5 resize-none
             outline-none focus:ring-0 focus:border-[#000000] focus:border-2 bg-transparent"
-            placeholder="Comment"
+            placeholder="Коментар"
           />
-          <ButtonCommonLink text="Send" href="/" customStyles="mt-10" />
+          <ButtonCommonLink text="Надіслати" href="/" customStyles="mt-10" />
         </div>
       </div>
     </div>

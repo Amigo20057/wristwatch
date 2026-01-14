@@ -20,10 +20,10 @@ export default function HeaderClient({
   const router = useRouter();
 
   const navItems = [
-    { path: "/", name: "Home" },
-    { path: "/watches", name: "Watches" },
-    { path: "/track", name: "Track Your Order" },
-    { path: "/contact", name: "Contact" },
+    { path: "/", name: "Головна" },
+    { path: "/watches", name: "Годинники" },
+    { path: "/track", name: "Замовлення" },
+    { path: "/contact", name: "Контакт" },
   ];
 
   return (

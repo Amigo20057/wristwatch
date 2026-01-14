@@ -170,10 +170,10 @@ export default function CurrencySelector({
                 </div>
                 <div className="leading-tight">
                   <div className="text-[13px] font-semibold">
-                    Region & Currency
+                    Регіон і валюта
                   </div>
                   <div className="text-[12px] text-gray-500">
-                    Choose country and currency
+                    Виберіть країну та валюту
                   </div>
                 </div>
               </div>
@@ -188,7 +188,7 @@ export default function CurrencySelector({
                       : "text-gray-600"
                   }`}
                 >
-                  Country
+                  Країна
                 </button>
                 <button
                   type="button"
@@ -199,7 +199,7 @@ export default function CurrencySelector({
                       : "text-gray-600"
                   }`}
                 >
-                  Currency
+                  Валюта
                 </button>
               </div>
             </div>
@@ -215,9 +215,7 @@ export default function CurrencySelector({
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder={
-                    tab === "country"
-                      ? "Search country..."
-                      : "Search currency..."
+                    tab === "country" ? "Країна пошуку..." : "Пошук валюти..."
                   }
                   className="w-full h-10 pl-9 pr-3 rounded-xl bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200 text-[13px]"
                 />
@@ -296,16 +294,15 @@ export default function CurrencySelector({
           <div className="p-3 border-t bg-gray-50">
             <div className="flex items-center justify-between text-[12px] text-gray-600">
               <span>
-                Selected:{" "}
-                <b className="text-gray-900">{selectedCountry.code}</b> /{" "}
-                <b className="text-gray-900">{currency}</b>
+                Вибране: <b className="text-gray-900">{selectedCountry.code}</b>{" "}
+                / <b className="text-gray-900">{currency}</b>
               </span>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
                 className="px-3 py-1.5 rounded-full bg-white border border-gray-200 hover:bg-gray-100 transition"
               >
-                Done
+                Готово
               </button>
             </div>
           </div>

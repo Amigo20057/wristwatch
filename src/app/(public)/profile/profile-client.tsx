@@ -66,7 +66,7 @@ export default function ProfileClient({
           <div className="flex items-end justify-between">
             <div>
               <p className="text-[11px] tracking-[0.2em] text-gray-500">
-                ORDERS
+                ЗАМОВЛЕННЯ
               </p>
               <h2
                 className="mt-2"
@@ -77,21 +77,21 @@ export default function ProfileClient({
                   letterSpacing: "1px",
                 }}
               >
-                Your order history
+                Ваша історія замовлень
               </h2>
             </div>
 
             <div className="text-[12px] text-gray-500">
-              Total orders:{" "}
+              Всього замовлень:{" "}
               <span className="text-gray-800">{orders.length}</span>
             </div>
           </div>
 
           <div className="mt-6 border border-[#eeeeee] rounded-2xl overflow-hidden">
             <div className="flex justify-between px-6 py-4 text-[11px] tracking-[0.2em] text-gray-500 border-b border-[#eeeeee]">
-              <span>ORDER</span>
-              <span>ITEMS</span>
-              <span>STATUS</span>
+              <span>ЗАМОВЛЕННЯ</span>
+              <span>ПРОДУКТИ</span>
+              <span>СТАТУС</span>
             </div>
 
             {orders.map((o) => (
@@ -112,7 +112,7 @@ export default function ProfileClient({
                       {o.orderNumber}
                     </p>
                     <p className="mt-2 text-[12px] text-gray-500">
-                      Ship to: {o.city}, {o.state}
+                      Відправити до: {o.city}, {o.state}
                     </p>
                   </div>
 

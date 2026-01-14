@@ -13,7 +13,7 @@ export default function ProfileHeader({
             className="text-[12px] tracking-[0.25em] text-gray-500"
             style={{ letterSpacing: "0.25em" }}
           >
-            ACCOUNT
+            АКАУНТ
           </p>
           <h1
             className="mt-3"
@@ -23,7 +23,7 @@ export default function ProfileHeader({
               fontWeight: "100",
             }}
           >
-            Profile
+            Профіль
           </h1>
         </div>
 
@@ -31,7 +31,7 @@ export default function ProfileHeader({
           onClick={handleLogout}
           className="h-[44px] px-6 border border-black text-[12px] tracking-[0.2em] hover:bg-black hover:text-white transition-colors"
         >
-          LOG OUT
+          ВИЙТИ
         </button>
       </div>
     </div>

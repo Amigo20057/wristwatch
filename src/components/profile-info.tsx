@@ -1,11 +1,13 @@
 "use client";
 
 import { changeUserNameById } from "@/actions/user";
+import { useAuthStore } from "@/store/auth.store";
 import { Session } from "next-auth";
 import { useEffect, useMemo, useState } from "react";
 
 export default function ProfileInfo({ session }: { session: Session }) {
   const [isLoading, setIsLoading] = useState(false);
+  const { setAuthState, status } = useAuthStore();
   const [isOpen, setIsOpen] = useState(false);
 
   const initialName = useMemo(
@@ -66,13 +68,13 @@ export default function ProfileInfo({ session }: { session: Session }) {
       <aside className="sticky top-10 h-fit">
         <div className="border border-[#eeeeee] rounded-2xl p-6">
           <p className="text-[11px] tracking-[0.2em] text-gray-500">
-            PERSONAL INFO
+            ОСОБИСТА ІНФОРМАЦІЯ
           </p>
 
           <div className="mt-6 space-y-5">
             <div>
               <p className="text-[11px] tracking-[0.2em] text-gray-500">
-                FULL NAME
+                {`ПОВНЕ ІМ'Я`}
               </p>
               <p
                 className="mt-1 text-[18px]"
@@ -100,7 +102,7 @@ export default function ProfileInfo({ session }: { session: Session }) {
                 onClick={() => setIsOpen(true)}
                 className="w-full h-[48px] bg-black text-white text-[12px] tracking-[0.2em] hover:opacity-90"
               >
-                EDIT PROFILE
+                РЕДАГУВАТИ ПРОФІЛЬ
               </button>
             </div>
           </div>
@@ -117,7 +119,7 @@ export default function ProfileInfo({ session }: { session: Session }) {
                 className="text-[12px] tracking-[0.25em] text-gray-500"
                 style={{ letterSpacing: "0.25em" }}
               >
-                EDIT PROFILE
+                РЕДАГУВАТИ ПРОФІЛЬ
               </p>
 
               <h2
@@ -129,13 +131,13 @@ export default function ProfileInfo({ session }: { session: Session }) {
                   letterSpacing: "1px",
                 }}
               >
-                Personal information
+                Особиста інформація
               </h2>
 
               <div className="mt-8 space-y-5">
                 <div>
                   <label className="text-[11px] tracking-[0.2em] text-gray-500">
-                    NAME
+                    {"ІМ'Я"}
                   </label>
                   <input
                     value={name}
@@ -146,7 +148,7 @@ export default function ProfileInfo({ session }: { session: Session }) {
 
                 <div>
                   <label className="text-[11px] tracking-[0.2em] text-gray-500">
-                    SURNAME
+                    ПРІЗВИЩЕ
                   </label>
                   <input
                     value={surname}
@@ -162,7 +164,7 @@ export default function ProfileInfo({ session }: { session: Session }) {
                   disabled={isLoading}
                   className="h-[44px] px-6 border border-black text-[12px] tracking-[0.2em] hover:bg-black hover:text-white transition-colors disabled:opacity-50"
                 >
-                  CANCEL
+                  СКАСУВАТИ
                 </button>
 
                 <button
@@ -170,7 +172,7 @@ export default function ProfileInfo({ session }: { session: Session }) {
                   disabled={isLoading}
                   className="h-[44px] px-6 bg-black text-white text-[12px] tracking-[0.2em] hover:opacity-90 disabled:opacity-50"
                 >
-                  {isLoading ? "SAVING..." : "SAVE"}
+                  {isLoading ? "ЗБЕРЕЖЕННЯ..." : "ЗБЕРЕЖИТИ"}
                 </button>
               </div>
             </div>
