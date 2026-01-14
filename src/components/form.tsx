@@ -53,9 +53,9 @@ export default function Form({ type }: IProps) {
           <div>
             <input
               type="text"
-              placeholder="Name"
+              placeholder="Ім'я"
               className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-black"
-              {...register("name", { required: "Name is required" })}
+              {...register("name", { required: "Необхідно вказати ім'я" })}
             />
             {errors.name && (
               <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -65,9 +65,9 @@ export default function Form({ type }: IProps) {
           <div>
             <input
               type="text"
-              placeholder="Surname"
+              placeholder="Прізвище"
               className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-black"
-              {...register("surname", { required: "Surname is required" })}
+              {...register("surname", { required: "Прізвище є обов'язковим" })}
             />
             {errors.surname && (
               <p className="text-red-500 text-sm mt-1">
@@ -86,7 +86,7 @@ export default function Form({ type }: IProps) {
             required: "Email is required",
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: "Invalid email format",
+              message: "Недійсний формат електронної пошти",
             },
           })}
         />
@@ -97,13 +97,13 @@ export default function Form({ type }: IProps) {
       <div>
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Пароль"
           className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-black"
           {...register("password", {
-            required: "Password is required",
+            required: "Необхідно ввести пароль",
             minLength: {
               value: 5,
-              message: "Minimum 5 characters",
+              message: "Мінімум 5 символів",
             },
           })}
         />
@@ -115,26 +115,26 @@ export default function Form({ type }: IProps) {
         type="submit"
         className="bg-[#5b33ff] hover:bg-[#4b2adb] transition text-white rounded-lg py-3 font-semibold mt-2"
       >
-        {type === "login" ? "Continue" : "Create account"}
+        {type === "login" ? "Продовжити" : "Створити акаунт"}
       </button>
       {type === "login" ? (
         <p className="text-gray-700">
-          Haven&apos;t created an account yet?{" "}
+          Ще не створив обліковий запис?{" "}
           <span
             className="underline cursor-pointer hover:opacity-50"
             onClick={() => router.push("/auth/register")}
           >
-            Sign up
+            Зареєструватися
           </span>
         </p>
       ) : (
         <p className="text-gray-700">
-          Already have an account?{" "}
+          Вже є акаунт?{" "}
           <span
             className="underline cursor-pointer hover:opacity-50"
             onClick={() => router.push("/auth/login")}
           >
-            Sign in
+            Увійдіть
           </span>
         </p>
       )}

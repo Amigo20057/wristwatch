@@ -226,7 +226,7 @@ export default function ProductClient({
                 letterSpacing: "3px",
               }}
             >
-              Quantity
+              Кількість
             </p>
             <div className="border w-[142px] h-[47px] flex items-center justify-around">
               <button
@@ -248,7 +248,7 @@ export default function ProductClient({
               onClick={() => handleAddToCart(watch)}
             >
               <span style={{ fontFamily: "serif", fontSize: "14px" }}>
-                Add to cart
+                Додати в кошик
               </span>
             </button>
           </div>
@@ -263,13 +263,13 @@ export default function ProductClient({
               style={{ fontFamily: "serif" }}
               className="text-[#5a5a5a] list-disc pl-10 mt-5 [&_li]:p-1"
             >
-              <li>Made of Premium Stainless Steel</li>
-              <li>Movement: {watch.movement}</li>
-              <li>Water resistance: {watch.waterResistance}</li>
-              <li>Diameter: {watch.diameter}</li>
+              <li>Зроблено з Premium Stainless Steel</li>
+              <li>Рух: {watch.movement}</li>
+              <li>Водостійкість: {watch.waterResistance}</li>
+              <li>Діаметр: {watch.diameter}</li>
             </ul>
             <p className="text-[#5a5a5a] mt-5">
-              <span className="text-black font-semibold">Size:</span>{" "}
+              <span className="text-black font-semibold">Розмір:</span>{" "}
               {watch.size}
             </p>
           </div>
