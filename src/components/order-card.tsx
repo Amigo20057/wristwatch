@@ -33,20 +33,20 @@ export default function OrderCard({ item }: { item: ICartItem }) {
                 quantity: newQuantity,
                 totalPrice: newQuantity * i.watch.price,
               }
-            : i
+            : i,
         );
       }
 
-      const updatedCart: ICart = {
+      const updatedCart: Partial<ICart> = {
         items: updatedItems,
         totalCount: updatedItems.reduce((s, i) => s + i.quantity, 0),
         totalPrice: updatedItems.reduce((s, i) => s + i.totalPrice, 0),
       };
 
       await api<void>("cart", "POST", updatedCart);
-      setCart(updatedCart);
+      setCart(updatedCart as ICart);
     },
-    [cart, item.watch.id, setCart]
+    [cart, item.watch.id, setCart],
   );
 
   return (
