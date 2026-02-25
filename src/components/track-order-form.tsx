@@ -2,10 +2,12 @@
 
 import { getOrder } from "@/actions/order";
 import type { ITrackOrder } from "@/types/order.interface";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function TrackOrderForm() {
+  const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,6 +30,12 @@ export default function TrackOrderForm() {
       setIsLoading(true);
 
       const result = await getOrder(data);
+
+      if (result) {
+        router.push("/profile");
+      } else {
+        setServerError("Замовлення не знайдено");
+      }
 
       reset();
     } catch (e) {
@@ -81,7 +89,7 @@ export default function TrackOrderForm() {
           <div>
             <input
               type="tel"
-              placeholder="Номер телефону (+380...)"
+              placeholder="Номер телефону (380...)"
               inputMode="tel"
               {...register("phoneNumber", {
                 required: "Номер телефону є обов'язковим",

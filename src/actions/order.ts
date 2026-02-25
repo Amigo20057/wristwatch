@@ -76,8 +76,8 @@ export async function getOrder({
 }: {
   order: string;
   phoneNumber: string;
-}): Promise<OrderWithItems | null> {
-  return prisma.order.findFirst({
+}) {
+  const data = await prisma.order.findFirst({
     where: {
       orderNumber: order,
       phone: phoneNumber,
@@ -90,10 +90,23 @@ export async function getOrder({
       },
     },
   });
+
+  if (!data) return null;
+
+  return {
+    ...data,
+    items: data.items.map((item) => ({
+      ...item,
+      watch: {
+        ...item.watch,
+        price: item.watch.price.toNumber(),
+      },
+    })),
+  };
 }
 
 export async function getOrdersByUserId(
-  userId: string
+  userId: string,
 ): Promise<OrderWithItems[]> {
   return prisma.order.findMany({
     where: { userId },

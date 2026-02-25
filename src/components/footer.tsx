@@ -44,27 +44,27 @@ export default function Footer() {
               </h1>
             </li>
             <li>
-              <Link href="/contacts" className="hover:underline">
+              <Link href="/contact" className="hover:underline">
                 Contact
               </Link>
             </li>
             <li>
-              <Link href="/contacts" className="hover:underline">
+              <Link href="/contact" className="hover:underline">
                 Terms of Service
               </Link>
             </li>
             <li>
-              <Link href="/contacts" className="hover:underline">
+              <Link href="/contact" className="hover:underline">
                 Refund & Return Policy
               </Link>
             </li>
             <li>
-              <Link href="/contacts" className="hover:underline">
+              <Link href="/contact" className="hover:underline">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link href="/contacts" className="hover:underline">
+              <Link href="/track" className="hover:underline">
                 Track Your Order
               </Link>
             </li>
